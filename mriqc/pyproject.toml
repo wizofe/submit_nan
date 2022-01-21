@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "submit-nan-test"
+version = "0.1.0"
+description = "A qsub submitter for the NAN server"
+authors = ["Ioannis Valasakis <code@wizofe.uk>"]
+license = "GNU General Public License v3+"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pybids = "^0.14.0"
+click = "^8.0.3"
+bandit = "^1.7.1"
+
+[tool.poetry.dev-dependencies]
+ipython = "^7.30.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
