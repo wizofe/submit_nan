@@ -15,8 +15,8 @@ template = """
 #$ -N fmriprep 
 #$ -o /data/project/ABIDE/abide/logs/fmriprep.output
 #$ -e /data/project/ABIDE/abide/logs/fmriprep.output
-#$ -l h_vmem=20G
-#$ -pe smp 18  
+#$ -l h_vmem=8G
+#$ -pe smp 8
 
 module purge
 module load nan sge
@@ -37,9 +37,9 @@ participant \
 --write-graph \
 --stop-on-first-crash \
 --fd_thres 3 \
---nthreads 18 \
---omp-threads 18 \
---mem_gb 22 \
+--nthreads 8 \
+--omp-threads 8 \
+--mem_gb 8 \
 --no-track \
 -vv \
 """
