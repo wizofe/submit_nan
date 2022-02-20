@@ -36,7 +36,6 @@ participant \
 --fs-license-file /home/k19012844/projects/neuro/abide-exploration/code/license.txt \
 --write-graph \
 --stop-on-first-crash \
---fd-spike-threshold 0.20 \
 --nprocs 1 \
 --omp-nthreads 1 \
 --mem 14336 \
