@@ -15,8 +15,8 @@ template = """
 #$ -N fmriprep 
 #$ -o /data/project/ABIDE/abide/logs/fmriprep.output
 #$ -e /data/project/ABIDE/abide/logs/fmriprep.output
-#$ -l h_vmem=8G
-#$ -pe smp 8
+#$ -l h_vmem=14G
+#$ -pe smp 1
 
 module purge
 module load nan sge
@@ -29,18 +29,18 @@ fmriprep \
 {BIDS_DIR} {FMRIPREP_DERIVS} \
 participant \
 --participant-label $subject \
---use-aroma --output-spaces MNI152Lin3mm \
+--use-aroma --output-spaces MNI152Lin3mm-res:01 \
 --work-dir /data/project/ABIDE/abide/work \
 --fd-spike-threshold 0.2 \
 --skip-bids-validation \
---fs-licence-file /home/k19012844/projects/neuro/abide-exploration/code/license.txt \
+--fs-license-file /home/k19012844/projects/neuro/abide-exploration/code/license.txt \
 --write-graph \
 --stop-on-first-crash \
---fd_thres 3 \
---nthreads 8 \
---omp-threads 8 \
---mem_gb 8 \
---no-track \
+--fd-spike-threshold 0.20 \
+--nprocs 1 \
+--omp-nthreads 1 \
+--mem 14336 \
+--notrack \
 -vv \
 """
 
@@ -85,11 +85,12 @@ for site in dirs_bids:
     with open(qsub_script_name, "w") as f:
         f.write(qsub_script)
 
-    print(f"Sending job for site {site}...")
-    subprocess.run(
-        f"qsub -t 1-{len_bids} {qsub_script_name}",
-        shell=True,
-        executable="/bin/tcsh",
-    )
+    print(f"Writing job for site {site}...")
+
+    # subprocess.run(
+    #     f"qsub -t 1-{len_bids} {qsub_script_name}",
+    #     shell=True,
+    #     executable="/bin/tcsh",
+    # )
 
 print("Finito. Check qstat.")
