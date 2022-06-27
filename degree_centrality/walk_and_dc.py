@@ -17,10 +17,9 @@ sites = [f for f in os.listdir(cwd) if (not f.startswith('.') and os.path.isdir(
 # for every site transverse into derivatives/fmriprep/sub-xxxx
 # get the *MNI152NLin6Asym_desc-smoothAROMAnonaggr_bold.nii.gz
 for site in sites:
-    bolds = glob.glob(f"{cwd}/{site}/**/*MNI152NLin6Asym_desc-smoothAROMAnonaggr_bold.nii.gz", recursive=True)
-    for f in bolds:
-        with open("sge.index", "a") as sge:
-            sge.write(f+'\n')
+    bolds = glob.glob(f"{cwd}/{site}/derivatives/fmriprep/**/*MNI152NLin6Asym_desc-smoothAROMAnonaggr_bold.nii.gz", recursive=True)
+#    for f in bolds:
+
+print(bolds)
 
 # write each resulting filename to an sge.index file )one line per file
-
